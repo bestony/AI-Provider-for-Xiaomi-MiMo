@@ -1,17 +1,17 @@
 <?php
 
 /**
- * Plugin Name:       AI Provider for Xiaomi MiMo
+ * Plugin Name:       Bestony AI Provider for Xiaomi MiMo
  * Plugin URI:        https://github.com/bestony/AI-Provider-for-Xiaomi-MiMo
  * Description:       Xiaomi MiMo (小米 MiMo) provider for the WordPress AI Client.
  * Requires at least: 7.0
  * Requires PHP:      7.4
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            Bestony
  * Author URI:        https://github.com/bestony
  * License:           GPL-2.0-or-later
  * License URI:       https://spdx.org/licenses/GPL-2.0-or-later.html
- * Text Domain:       ai-provider-for-xiaomimimo
+ * Text Domain:       bestony-ai-provider-for-xiaomi-mimo
  *
  * @package XiaomiMiMo\AiProvider
  */
@@ -39,7 +39,7 @@ require_once __DIR__ . '/src/autoload.php';
 function load_textdomain(): void
 {
     load_plugin_textdomain(
-        'ai-provider-for-xiaomimimo',
+        'bestony-ai-provider-for-xiaomi-mimo',
         false,
         dirname(plugin_basename(__FILE__)) . '/languages'
     );

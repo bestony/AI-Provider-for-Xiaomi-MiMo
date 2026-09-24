@@ -1,4 +1,4 @@
-# AI Provider for Xiaomi MiMo
+# Bestony AI Provider for Xiaomi MiMo
 
 [Xiaomi MiMo](https://platform.xiaomimimo.com/) (小米 MiMo) as a provider for the WordPress AI
 Client: text generation and multimodal understanding with MiMo models.
@@ -11,7 +11,7 @@ Client: text generation and multimodal understanding with MiMo models.
 * Vision input with the `mimo-v2.6-*` family and `mimo-v2.5`, so Alt Text Generation works.
 * Reasoning output (`reasoning_content`) surfaces as thought parts instead of being mixed into the
   answer text.
-* A **Settings → AI Provider for Xiaomi MiMo** page with three options: the API host (standard API or
+* A **Settings → Bestony AI Provider for Xiaomi MiMo** page with three options: the API host (standard API or
   one of the Token Plan clusters), the thinking mode, and the structured-output mode.
 
 ## Requirements
@@ -23,12 +23,12 @@ Client: text generation and multimodal understanding with MiMo models.
 ## Install
 
 Download the zip from [Releases](../../releases) and upload it through **Plugins → Add New → Upload
-Plugin**, or copy the plugin folder to `wp-content/plugins/ai-provider-for-xiaomimimo/`. Activate it,
+Plugin**, or copy the plugin folder to `wp-content/plugins/bestony-ai-provider-for-xiaomi-mimo/`. Activate it,
 then open **Settings → Connectors**, open the Xiaomi MiMo card and paste your API key.
 
 ## Settings
 
-**Settings → AI Provider for Xiaomi MiMo** has three options. Each is overridden by its matching
+**Settings → Bestony AI Provider for Xiaomi MiMo** has three options. Each is overridden by its matching
 environment variable when one is set.
 
 | Option | Values | Default | Environment variable |

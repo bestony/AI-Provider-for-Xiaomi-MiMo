@@ -26,10 +26,10 @@ final class XiaomimimoConfig
      *
      * @var string
      */
-    public const VERSION = '1.0.0';
+    public const VERSION = '1.0.1';
 
     /**
-     * The option the Settings → AI Provider for Xiaomi MiMo page stores the chosen base URL in.
+     * The option the Settings → Bestony AI Provider for Xiaomi MiMo page stores the chosen base URL in.
      *
      * @var string
      */
@@ -376,6 +376,6 @@ final class XiaomimimoConfig
      */
     public static function getUserAgent(): string
     {
-        return 'ai-provider-for-xiaomimimo/' . self::VERSION;
+        return 'bestony-ai-provider-for-xiaomi-mimo/' . self::VERSION;
     }
 }

@@ -1,9 +1,9 @@
-=== AI Provider for Xiaomi MiMo ===
+=== Bestony AI Provider for Xiaomi MiMo ===
 Contributors:      bestony
 Tags:              ai, connector, xiaomi, mimo, vision
 Requires at least: 7.0
 Tested up to:      7.1
-Stable tag:        1.0.0
+Stable tag:        1.0.1
 Requires PHP:      7.4
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -20,7 +20,7 @@ Adds [Xiaomi MiMo](https://platform.xiaomimimo.com/) (小米 MiMo) as a provider
 * Vision (multimodal understanding): the `mimo-v2.6-*` family and `mimo-v2.5` accept images, so
   features like Alt Text Generation work.
 * Reasoning output is surfaced as thought parts rather than mixed into the answer text.
-* A **Settings → AI Provider for Xiaomi MiMo** page with three options: the API host (standard API or
+* A **Settings → Bestony AI Provider for Xiaomi MiMo** page with three options: the API host (standard API or
   one of the Token Plan clusters), the thinking mode, and the structured-output mode.
 
 == Screenshots ==
@@ -29,7 +29,7 @@ Adds [Xiaomi MiMo](https://platform.xiaomimimo.com/) (小米 MiMo) as a provider
 
 == Installation ==
 
-1. Upload the plugin files to `/wp-content/plugins/ai-provider-for-xiaomimimo/`.
+1. Upload the plugin files to `/wp-content/plugins/bestony-ai-provider-for-xiaomi-mimo/`.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 3. Go to Settings → Connectors, open the Xiaomi MiMo card and paste your API key — or define it
    outside the database (see Configuration).
@@ -39,7 +39,7 @@ A Xiaomi MiMo account with API access is required. Create a key at
 
 == Settings ==
 
-**Settings → AI Provider for Xiaomi MiMo** has three options. Each is overridden by its matching
+**Settings → Bestony AI Provider for Xiaomi MiMo** has three options. Each is overridden by its matching
 environment variable when one is set.
 
 **API host** — which Xiaomi MiMo host the provider talks to:
@@ -67,7 +67,7 @@ schema is downgraded to `json_object`.
 There is also a **Setup Token Plan** link in the plugin's row on the Plugins screen that jumps
 straight to this page.
 
-The admin screens are translatable; a translation template (`languages/ai-provider-for-xiaomimimo.pot`) ships with the plugin.
+The admin screens are translatable; a translation template (`languages/bestony-ai-provider-for-xiaomi-mimo.pot`) ships with the plugin.
 
 == Configuration ==
 
@@ -117,7 +117,7 @@ provider stays silent when the SDK is missing.
 = Do I need to configure anything in the database? =
 
 The API key (on Settings → Connectors) and, if you change them from the defaults, the settings on
-Settings → AI Provider for Xiaomi MiMo. Both can instead be set with an environment variable or
+Settings → Bestony AI Provider for Xiaomi MiMo. Both can instead be set with an environment variable or
 constant.
 
 = Why does the plugin require WordPress 7.0? =
@@ -178,7 +178,7 @@ below for the exact endpoints.
 
 = Is there a settings page? =
 
-Yes: **Settings → AI Provider for Xiaomi MiMo**, which chooses the API host, the thinking mode and the
+Yes: **Settings → Bestony AI Provider for Xiaomi MiMo**, which chooses the API host, the thinking mode and the
 structured-output mode. The API key still lives on Settings → Connectors.
 
 == External services ==
@@ -188,7 +188,7 @@ required so the WordPress AI Client can send requests to MiMo models from your s
 service: requests are billed to your Xiaomi MiMo account, and an account with API access is required.
 
 The plugin contacts the following endpoints under the selected base URL — `https://api.xiaomimimo.com/v1`
-by default, or whichever host is chosen on Settings → AI Provider for Xiaomi MiMo:
+by default, or whichever host is chosen on Settings → Bestony AI Provider for Xiaomi MiMo:
 
 * `GET /models` — called when the AI Client refreshes its list of available models, and when it checks
   whether your credentials work. No user content is sent; only your API key, so MiMo can return the
@@ -211,13 +211,22 @@ This service is provided by Xiaomi:
 
 == Changelog ==
 
+= 1.0.1 =
+* The release zip no longer includes the `.wordpress-org` directory, which is only used for the
+  WordPress.org plugin directory listing.
+* Renamed to Bestony AI Provider for Xiaomi MiMo: the plugin slug, main file and text domain are now
+  `bestony-ai-provider-for-xiaomi-mimo`. Settings, the API key and environment variables are unchanged.
+
 = 1.0.0 =
 * Initial release: text generation, chat history, tool calling, structured output (JSON mode) and
   vision input with Xiaomi MiMo (小米 MiMo) models.
-* A Settings → AI Provider for Xiaomi MiMo page to choose the API host (standard API or the China,
+* A Settings → Bestony AI Provider for Xiaomi MiMo page to choose the API host (standard API or the China,
   Singapore and Europe Token Plan clusters), the thinking mode and the structured-output mode.
 
 == Upgrade Notice ==
+
+= 1.0.1 =
+Renames the plugin to Bestony AI Provider for Xiaomi MiMo (slug `bestony-ai-provider-for-xiaomi-mimo`) and stops shipping the `.wordpress-org` directory in the release zip. Existing settings and keys keep working.
 
 = 1.0.0 =
 Initial release.

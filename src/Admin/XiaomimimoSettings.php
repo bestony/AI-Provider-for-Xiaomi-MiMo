@@ -13,7 +13,7 @@ namespace XiaomiMiMo\AiProvider\Admin;
 use XiaomiMiMo\AiProvider\Util\XiaomimimoConfig;
 
 /**
- * The Settings → AI Provider for Xiaomi MiMo page and the Plugins-screen shortcut to it.
+ * The Settings → Bestony AI Provider for Xiaomi MiMo page and the Plugins-screen shortcut to it.
  *
  * Everything here goes through the WordPress Settings API: `register_setting()` owns the nonce,
  * capability check and persistence, so no option is written by hand.
@@ -108,14 +108,14 @@ final class XiaomimimoSettings
 
         add_settings_section(
             self::SECTION_ENDPOINT,
-            __('Xiaomi MiMo API endpoint', 'ai-provider-for-xiaomimimo'),
+            __('Xiaomi MiMo API endpoint', 'bestony-ai-provider-for-xiaomi-mimo'),
             [self::class, 'renderEndpointSection'],
             self::PAGE_SLUG
         );
 
         add_settings_field(
             XiaomimimoConfig::OPTION_BASE_URL,
-            __('API host', 'ai-provider-for-xiaomimimo'),
+            __('API host', 'bestony-ai-provider-for-xiaomi-mimo'),
             [self::class, 'renderBaseUrlField'],
             self::PAGE_SLUG,
             self::SECTION_ENDPOINT
@@ -123,14 +123,14 @@ final class XiaomimimoSettings
 
         add_settings_section(
             self::SECTION_GENERATION,
-            __('Generation behaviour', 'ai-provider-for-xiaomimimo'),
+            __('Generation behaviour', 'bestony-ai-provider-for-xiaomi-mimo'),
             [self::class, 'renderGenerationSection'],
             self::PAGE_SLUG
         );
 
         add_settings_field(
             XiaomimimoConfig::OPTION_THINKING,
-            __('Thinking mode', 'ai-provider-for-xiaomimimo'),
+            __('Thinking mode', 'bestony-ai-provider-for-xiaomi-mimo'),
             [self::class, 'renderThinkingField'],
             self::PAGE_SLUG,
             self::SECTION_GENERATION
@@ -138,7 +138,7 @@ final class XiaomimimoSettings
 
         add_settings_field(
             XiaomimimoConfig::OPTION_STRUCTURED_OUTPUT,
-            __('Structured output', 'ai-provider-for-xiaomimimo'),
+            __('Structured output', 'bestony-ai-provider-for-xiaomi-mimo'),
             [self::class, 'renderStructuredOutputField'],
             self::PAGE_SLUG,
             self::SECTION_GENERATION
@@ -153,8 +153,8 @@ final class XiaomimimoSettings
     public static function addPage(): void
     {
         add_options_page(
-            __('AI Provider for Xiaomi MiMo', 'ai-provider-for-xiaomimimo'),
-            __('AI Provider for Xiaomi MiMo', 'ai-provider-for-xiaomimimo'),
+            __('Bestony AI Provider for Xiaomi MiMo', 'bestony-ai-provider-for-xiaomi-mimo'),
+            __('Bestony AI Provider for Xiaomi MiMo', 'bestony-ai-provider-for-xiaomi-mimo'),
             'manage_options',
             self::PAGE_SLUG,
             [self::class, 'renderPage']
@@ -173,7 +173,7 @@ final class XiaomimimoSettings
         $links[] = sprintf(
             '<a href="%s">%s</a>',
             esc_url($url),
-            esc_html__('Setup Token Plan', 'ai-provider-for-xiaomimimo')
+            esc_html__('Setup Token Plan', 'bestony-ai-provider-for-xiaomi-mimo')
         );
 
         return $links;
@@ -255,7 +255,7 @@ final class XiaomimimoSettings
     {
         echo '<p>' . esc_html__(
             'Choose which Xiaomi MiMo host the provider talks to. Pick the standard API for pay-as-you-go keys, or the Token Plan cluster your key was provisioned for.',
-            'ai-provider-for-xiaomimimo'
+            'bestony-ai-provider-for-xiaomi-mimo'
         ) . '</p>';
     }
 
@@ -268,7 +268,7 @@ final class XiaomimimoSettings
     {
         echo '<p>' . esc_html__(
             'These control how requests are shaped. They apply to every model and every generation.',
-            'ai-provider-for-xiaomimimo'
+            'bestony-ai-provider-for-xiaomi-mimo'
         ) . '</p>';
     }
 
@@ -295,7 +295,7 @@ final class XiaomimimoSettings
         echo '</select>';
         echo '<p class="description">' . esc_html__(
             'The model list and every generation request use this base URL. The XIAOMIMIMO_BASE_URL environment variable or PHP constant, when set, overrides it.',
-            'ai-provider-for-xiaomimimo'
+            'bestony-ai-provider-for-xiaomi-mimo'
         ) . '</p>';
     }
 
@@ -314,9 +314,9 @@ final class XiaomimimoSettings
         );
 
         $choices = [
-            XiaomimimoConfig::THINKING_DEFAULT => __('Use the model default', 'ai-provider-for-xiaomimimo'),
-            'enabled' => __('Always enable thinking', 'ai-provider-for-xiaomimimo'),
-            'disabled' => __('Disable thinking', 'ai-provider-for-xiaomimimo'),
+            XiaomimimoConfig::THINKING_DEFAULT => __('Use the model default', 'bestony-ai-provider-for-xiaomi-mimo'),
+            'enabled' => __('Always enable thinking', 'bestony-ai-provider-for-xiaomi-mimo'),
+            'disabled' => __('Disable thinking', 'bestony-ai-provider-for-xiaomi-mimo'),
         ];
 
         echo '<select name="' . esc_attr($name) . '" id="' . esc_attr($name) . '">';
@@ -327,7 +327,7 @@ final class XiaomimimoSettings
         echo '</select>';
         echo '<p class="description">' . esc_html__(
             'MiMo enables thinking by default, which is slower and ignores temperature and top_p. Disable it for cheaper, faster calls that honour those parameters. XIAOMIMIMO_THINKING overrides this setting.',
-            'ai-provider-for-xiaomimimo'
+            'bestony-ai-provider-for-xiaomi-mimo'
         ) . '</p>';
     }
 
@@ -346,8 +346,8 @@ final class XiaomimimoSettings
         );
 
         $choices = [
-            'json_object' => __('JSON mode (json_object)', 'ai-provider-for-xiaomimimo'),
-            'none' => __('Send no response_format', 'ai-provider-for-xiaomimimo'),
+            'json_object' => __('JSON mode (json_object)', 'bestony-ai-provider-for-xiaomi-mimo'),
+            'none' => __('Send no response_format', 'bestony-ai-provider-for-xiaomi-mimo'),
         ];
 
         echo '<select name="' . esc_attr($name) . '" id="' . esc_attr($name) . '">';
@@ -358,7 +358,7 @@ final class XiaomimimoSettings
         echo '</select>';
         echo '<p class="description">' . esc_html__(
             'MiMo implements OpenAI JSON mode only, not schema-constrained output; features that ask for a JSON schema are downgraded to json_object. XIAOMIMIMO_STRUCTURED_OUTPUT overrides this setting.',
-            'ai-provider-for-xiaomimimo'
+            'bestony-ai-provider-for-xiaomi-mimo'
         ) . '</p>';
     }
 
@@ -373,10 +373,10 @@ final class XiaomimimoSettings
     private static function getBaseUrlLabels(): array
     {
         $labels = [
-            XiaomimimoConfig::BASE_URL_STANDARD => __('Xiaomi MiMo (standard API)', 'ai-provider-for-xiaomimimo'),
-            XiaomimimoConfig::BASE_URL_TOKEN_PLAN_CN => __('Token Plan — China', 'ai-provider-for-xiaomimimo'),
-            XiaomimimoConfig::BASE_URL_TOKEN_PLAN_SGP => __('Token Plan — Singapore', 'ai-provider-for-xiaomimimo'),
-            XiaomimimoConfig::BASE_URL_TOKEN_PLAN_AMS => __('Token Plan — Europe', 'ai-provider-for-xiaomimimo'),
+            XiaomimimoConfig::BASE_URL_STANDARD => __('Xiaomi MiMo (standard API)', 'bestony-ai-provider-for-xiaomi-mimo'),
+            XiaomimimoConfig::BASE_URL_TOKEN_PLAN_CN => __('Token Plan — China', 'bestony-ai-provider-for-xiaomi-mimo'),
+            XiaomimimoConfig::BASE_URL_TOKEN_PLAN_SGP => __('Token Plan — Singapore', 'bestony-ai-provider-for-xiaomi-mimo'),
+            XiaomimimoConfig::BASE_URL_TOKEN_PLAN_AMS => __('Token Plan — Europe', 'bestony-ai-provider-for-xiaomi-mimo'),
         ];
 
         $choices = [];

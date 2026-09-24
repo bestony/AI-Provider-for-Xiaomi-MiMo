@@ -126,7 +126,7 @@ check(
 );
 check(XiaomimimoConfig::getRequestTimeout() >= 60.0, 'request timeout is long enough for an LLM call');
 check(
-    XiaomimimoConfig::getUserAgent() === 'ai-provider-for-xiaomimimo/' . XiaomimimoConfig::VERSION,
+    XiaomimimoConfig::getUserAgent() === 'bestony-ai-provider-for-xiaomi-mimo/' . XiaomimimoConfig::VERSION,
     'user agent identifies the plugin and its version'
 );
 check(XiaomimimoConfig::getStructuredOutputMode() === 'json_object', 'structured output defaults to json_object');
@@ -794,7 +794,7 @@ function use_xiaomimimo_plugin_checks(): void
         }
     }
 
-    require dirname(__DIR__) . '/ai-provider-for-xiaomimimo.php';
+    require dirname(__DIR__) . '/bestony-ai-provider-for-xiaomi-mimo.php';
 
     /*
      * The SDK resolves a PSR-18 client through HTTPlug discovery when a provider is registered. That
@@ -1033,7 +1033,7 @@ function use_xiaomimimo_settings_checks(callable $apply): void
     );
 
     // --- The Plugins-screen shortcut. -----------------------------------------------------------
-    $hook = 'plugin_action_links_' . plugin_basename(dirname(__DIR__) . '/ai-provider-for-xiaomimimo.php');
+    $hook = 'plugin_action_links_' . plugin_basename(dirname(__DIR__) . '/bestony-ai-provider-for-xiaomi-mimo.php');
     $links = $apply($hook, ['deactivate' => '<a href="#">Deactivate</a>']);
     check(count($links) === 2, 'the shortcut is appended to the existing plugin action links');
     $shortcut = (string) end($links);
@@ -1057,7 +1057,7 @@ function use_xiaomimimo_settings_checks(callable $apply): void
         $callback();
     }
     check(
-        ($GLOBALS['xiaomimimo_textdomain'][0] ?? null) === 'ai-provider-for-xiaomimimo',
+        ($GLOBALS['xiaomimimo_textdomain'][0] ?? null) === 'bestony-ai-provider-for-xiaomi-mimo',
         'the text domain matches the plugin header'
     );
     check(
