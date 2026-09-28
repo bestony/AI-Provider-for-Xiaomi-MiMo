@@ -6,7 +6,7 @@
  * Description:       Xiaomi MiMo (小米 MiMo) provider for the WordPress AI Client.
  * Requires at least: 7.0
  * Requires PHP:      7.4
- * Version:           1.0.1
+ * Version:           0.0.1
  * Author:            Bestony
  * Author URI:        https://github.com/bestony
  * License:           GPL-2.0-or-later

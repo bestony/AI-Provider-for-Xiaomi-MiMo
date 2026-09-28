@@ -3,7 +3,7 @@ Contributors:      bestony
 Tags:              ai, connector, xiaomi, mimo, vision
 Requires at least: 7.0
 Tested up to:      7.1
-Stable tag:        1.0.1
+Stable tag:        0.0.1
 Requires PHP:      7.4
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -210,6 +210,9 @@ This service is provided by Xiaomi:
 * Privacy Policy: [https://mimo.mi.com/docs/quick-start/terms/privacy-policy](https://mimo.mi.com/docs/quick-start/terms/privacy-policy)
 
 == Changelog ==
+
+= 0.0.1 =
+* Initial release to WordPress.org plugin directory.
 
 = 1.0.1 =
 * The release zip no longer includes the `.wordpress-org` directory, which is only used for the
