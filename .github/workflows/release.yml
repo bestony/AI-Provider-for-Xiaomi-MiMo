@@ -154,7 +154,7 @@ jobs:
             cd "$TMPDIR_WS/trunk"
             rsync -av --delete --exclude=.svn "$stage_dir/" ./
             svn status | grep -v '^ ? .*/README\.md$' | grep '?' || true
-            svn add --force --auto-props --parents --depth infinity --no-unversioned --quiet
+            svn add --force --auto-props --parents --depth infinity --quiet
             svn ci --username "$SVN_USERNAME" --password "$SVN_PASSWORD" \
               --non-interactive --trust-server-cert \
               -m "$version: Update trunk to version $version ($slug)"
