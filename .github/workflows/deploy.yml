@@ -1,4 +1,4 @@
-name: Release
+name: Deploy to WordPress.org
 
 on:
   push:
@@ -6,10 +6,10 @@ on:
       - '*'
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  release:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -44,37 +44,10 @@ jobs:
           # No --sdk: the SDK is not vendored, so only the WordPress-free checks can run here.
           php scripts/selfcheck.php
 
-      - name: Build plugin zip
-        run: |
-          set -euo pipefail
-          slug=bestony-ai-provider
-          zip="build/$slug-${GITHUB_REF_NAME}.zip"
-          mkdir -p build
-          # .gitattributes export-ignores scripts/, README.md and the CI files.
-          git archive --format=zip --prefix="$slug/" -o "$zip" HEAD
-          unzip -l "$zip" | grep -q "$slug/$slug.php"
-          unzip -l "$zip" | grep -q "$slug/assets/images/xiaomimimo.svg"
-
-      - name: Compose release notes
-        run: |
-          set -euo pipefail
-          version="${GITHUB_REF_NAME#v}"
-          {
-            awk -v v="$version" '$0 == "= " v " =" {found=1; next} found && /^= / {exit} found' readme.txt
-            echo
-            echo "**Commits**"
-            prev=$(git describe --tags --abbrev=0 "${GITHUB_REF_NAME}^" 2>/dev/null || true)
-            if [ -n "$prev" ]; then
-              git log --pretty='- %s (%h)' "$prev..$GITHUB_REF_NAME"
-            else
-              git log --pretty='- %s (%h)' "$GITHUB_REF_NAME"
-            fi
-          } > RELEASE_NOTES.md
-
-      - name: Publish release
+      - name: Deploy to WordPress.org
+        uses: 10up/action-wordpress-plugin-deploy@stable
         env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh release create "$GITHUB_REF_NAME" build/*.zip \
-            --title "$GITHUB_REF_NAME" \
-            --notes-file RELEASE_NOTES.md
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          SLUG: bestony-ai-provider
+          ASSETS_DIR: .wordpress-org
