@@ -9,12 +9,12 @@
 #   - Subversion client installed (`apt install subversion`)
 #   - Username: bestony (configured in ~/.subversion/config)
 #   - Password stored in ~/.subversion/auth/svn.simple/*
-#     (first run `svn ls https://plugins.svn.wordpress.org/bestony-ai-provider/trunk/`
+#     (first run `svn ls https://plugins.svn.wordpress.org/bestony-ai-provider-for-xiaomi-mimo/trunk/`
 #      and enter your password when prompted)
 
 set -euo pipefail
 
-PLUGIN_SLUG="bestony-ai-provider"
+PLUGIN_SLUG="bestony-ai-provider-for-xiaomi-mimo"
 PLUGIN_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 TMPDIR_BASE="${TMPDIR:-/tmp}"
 
@@ -26,7 +26,7 @@ if [[ -z "$VERSION" ]]; then
     exit 1
 fi
 
-echo "=== Bestony AI Provider — WordPress.org Publisher ==="
+echo "=== Bestony AI Provider for Xiaomi MiMo — WordPress.org Publisher ==="
 echo "Plugin slug : $PLUGIN_SLUG"
 echo "Version     : $VERSION"
 echo ""
@@ -34,7 +34,7 @@ echo ""
 SVN_URL_BASE="https://plugins.svn.wordpress.org/$PLUGIN_SLUG"
 
 # Create a staging directory excluding dev-only files.
-STAGE_DIR=$(mktemp -d "$TMPDIR_BASE/bestony-ai-provider-XXXXXX")
+STAGE_DIR=$(mktemp -d "$TMPDIR_BASE/bestony-ai-provider-for-xiaomi-mimo-XXXXXX")
 trap 'rm -rf "$STAGE_DIR"' EXIT
 
 # Copy all files preserving structure.
@@ -60,7 +60,7 @@ case "${1:-}" in
 
         svn import "$STAGE_DIR" "$TAG_PATH" \
             --force-interactive \
-            -m "$VERSION: Release $VERSION to WordPress.org plugin directory"
+            -m "$VERSION: Release $VERSION to WordPress.org plugin directory ($PLUGIN_SLUG)"
 
         echo ""
         echo "Tag $VERSION created successfully!"

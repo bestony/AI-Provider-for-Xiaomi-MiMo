@@ -3,7 +3,7 @@ Contributors:      bestony
 Tags:              ai, connector, xiaomi, mimo, vision
 Requires at least: 7.0
 Tested up to:      7.1
-Stable tag:        0.0.1
+Stable tag:        1.0.2
 Requires PHP:      7.4
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -211,6 +211,9 @@ This service is provided by Xiaomi:
 
 == Changelog ==
 
+= 1.0.2 =
+* Automated release pipeline with GitHub Actions: tag push triggers both GitHub Release and WordPress.org plugin directory publishing.
+
 = 0.0.1 =
 * Initial release to WordPress.org plugin directory.
 
@@ -227,6 +230,9 @@ This service is provided by Xiaomi:
   Singapore and Europe Token Plan clusters), the thinking mode and the structured-output mode.
 
 == Upgrade Notice ==
+
+= 1.0.2 =
+Added automated GitHub Actions pipeline for WordPress.org plugin directory publishing.
 
 = 1.0.1 =
 Renames the plugin to Bestony AI Provider for Xiaomi MiMo (slug `bestony-ai-provider-for-xiaomi-mimo`) and stops shipping the `.wordpress-org` directory in the release zip. Existing settings and keys keep working.

@@ -78,3 +78,105 @@ jobs:
           gh release create "$GITHUB_REF_NAME" build/*.zip \
             --title "$GITHUB_REF_NAME" \
             --notes-file RELEASE_NOTES.md
+
+  wporg:
+    needs: release
+    runs-on: ubuntu-latest
+    environment: wordpress.org
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Install Subversion client
+        run: sudo apt-get update && sudo apt-get install -y subversion
+
+      - name: Create staging directory
+        id: staging
+        run: |
+          set -euo pipefail
+          slug=bestony-ai-provider-for-xiaomi-mimo
+          version="${GITHUB_REF_NAME#v}"
+          STAGE_DIR=$(mktemp -d /tmp/wporg-staging-XXXXXX)
+
+          # Copy all files preserving structure.
+          cp -a . "$STAGE_DIR/."
+
+          # Remove development-only directories/files.
+          rm -rf "$STAGE_DIR/.git"
+          rm -rf "$STAGE_DIR/.github"
+          rm -rf "$STAGE_DIR/.svn"
+          rm -rf "$STAGE_DIR/.commandcode"
+          rm -rf "$STAGE_DIR/scripts"
+          rm -rf "$STAGE_DIR/.wordpress-org"
+          rm -f "$STAGE_DIR/assets/images/xiaomimimo.svg"
+
+          echo "stage_dir=$STAGE_DIR" >> "$GITHUB_ENV"
+          echo "version=$version" >> "$GITHUB_ENV"
+          echo "slug=$slug" >> "$GITHUB_ENV"
+
+          echo "stage_dir=$STAGE_DIR" >> "$GITHUB_OUTPUT"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "slug=$slug" >> "$GITHUB_OUTPUT"
+
+      - name: Deploy to WordPress.org SVN
+        env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+        run: |
+          set -euo pipefail
+          slug="$slug"
+          version="$version"
+          stage_dir="$stage_dir"
+
+          TRUNK_URL="https://plugins.svn.wordpress.org/$slug/trunk"
+          TAG_PATH="https://plugins.svn.wordpress.org/$slug/tags/$version"
+
+          echo "=== WordPress.org Deployment ==="
+          echo "Plugin slug : $slug"
+          echo "Version     : $version"
+          echo ""
+
+          # Check if this is the first-ever deployment (no trunk exists).
+          IS_NEW=false
+          if svn ls "$TRUNK_URL" >/dev/null 2>&1; then
+            echo "Existing trunk detected — updating via checkout + commit"
+          else
+            echo "No existing trunk — performing initial import"
+            IS_NEW=true
+          fi
+
+          if [ "$IS_NEW" = false ]; then
+            # Update existing trunk: checkout, rsync, commit.
+            TMPDIR_WS=$(mktemp -d /tmp/wporg-ws-XXXXXX)
+            trap 'rm -rf "$TMPDIR_WS"' EXIT
+
+            svn checkout --non-interactive "$TRUNK_URL" "$TMPDIR_WS/trunk"
+            cd "$TMPDIR_WS/trunk"
+            rsync -av --delete --exclude=.svn "$stage_dir/" ./
+            svn status | grep -v '^ ? .*/README\.md$' | grep '?' || true
+            svn add --force --auto-props --parents --depth infinite --no-unversioned --quiet
+            svn ci --username "$SVN_USERNAME" --password "$SVN_PASSWORD" \
+              --non-interactive --trust-server-cert \
+              -m "$version: Update trunk to version $version ($slug)"
+          else
+            # First-time import: just import the staged dir directly.
+            svn import "$stage_dir" "$TRUNK_URL" \
+              --username "$SVN_USERNAME" --password "$SVN_PASSWORD" \
+              --non-interactive --trust-server-cert \
+              -m "$version: Initial import to WordPress.org plugin directory ($slug)"
+          fi
+
+          # Always import the tag (works whether it exists or not — fails if already present).
+          echo ""
+          echo "Creating tag $version ..."
+          svn import "$stage_dir" "$TAG_PATH" \
+            --username "$SVN_USERNAME" --password "$SVN_PASSWORD" \
+            --non-interactive --trust-server-cert \
+            -m "$version: Tagged release $version ($slug)"
+
+          echo ""
+          echo "================================="
+          echo "Trunk: https://plugins.svn.wordpress.org/$slug/"
+          echo "Tag  : $TAG_PATH"
+          echo "Live : https://wordpress.org/plugins/$slug/"
