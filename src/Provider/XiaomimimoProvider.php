@@ -76,7 +76,7 @@ class XiaomimimoProvider extends AbstractApiProvider
         throw new RuntimeException(
             sprintf(
                 /* translators: %s: model ID. */
-                esc_html__('The model "%s" has no supported capability for Xiaomi MiMo.', 'bestony-ai-provider-for-xiaomi-mimo'),
+                esc_html__('The model "%s" has no supported capability for Xiaomi MiMo.', 'bestony-ai-provider'),
                 esc_html($modelMetadata->getId())
             )
         );
@@ -101,7 +101,7 @@ class XiaomimimoProvider extends AbstractApiProvider
         if (version_compare(AiClient::VERSION, '1.2.0', '>=')) {
             $description = 'Text and multimodal understanding with Xiaomi MiMo (小米 MiMo) models.';
             $args[] = function_exists('__')
-                ? __('Text and multimodal understanding with Xiaomi MiMo (小米 MiMo) models.', 'bestony-ai-provider-for-xiaomi-mimo')
+                ? __('Text and multimodal understanding with Xiaomi MiMo (小米 MiMo) models.', 'bestony-ai-provider')
                 : $description;
         }
 

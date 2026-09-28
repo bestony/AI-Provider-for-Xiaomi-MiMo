@@ -23,7 +23,7 @@ Client: text generation and multimodal understanding with MiMo models.
 ## Install
 
 Download the zip from [Releases](../../releases) and upload it through **Plugins → Add New → Upload
-Plugin**, or copy the plugin folder to `wp-content/plugins/bestony-ai-provider-for-xiaomi-mimo/`. Activate it,
+Plugin**, or copy the plugin folder to `wp-content/plugins/bestony-ai-provider/`. Activate it,
 then open **Settings → Connectors**, open the Xiaomi MiMo card and paste your API key.
 
 ## Settings

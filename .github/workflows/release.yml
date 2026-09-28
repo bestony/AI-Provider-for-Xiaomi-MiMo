@@ -20,7 +20,7 @@ jobs:
         run: |
           set -euo pipefail
           tag="${GITHUB_REF_NAME#v}"
-          header=$(grep -m1 '^ \* Version:' bestony-ai-provider-for-xiaomi-mimo.php | awk '{print $3}')
+          header=$(grep -m1 '^ \* Version:' bestony-ai-provider.php | awk '{print $3}')
           stable=$(grep -m1 '^Stable tag:' readme.txt | awk '{print $3}')
           # The User-Agent is built from this constant, so it drifts silently if it is not checked.
           config=$(perl -ne "print \$1 if /const VERSION = '([\d.]+)'/" src/Util/XiaomimimoConfig.php)
@@ -47,13 +47,12 @@ jobs:
       - name: Build plugin zip
         run: |
           set -euo pipefail
-          slug=bestony-ai-provider-for-xiaomi-mimo
+          slug=bestony-ai-provider
           zip="build/$slug-${GITHUB_REF_NAME}.zip"
           mkdir -p build
           # .gitattributes export-ignores scripts/, README.md and the CI files.
           git archive --format=zip --prefix="$slug/" -o "$zip" HEAD
           unzip -l "$zip" | grep -q "$slug/$slug.php"
-          unzip -l "$zip" | grep -q "$slug/assets/images/xiaomimimo.svg"
 
       - name: Compose release notes
         run: |
@@ -95,7 +94,7 @@ jobs:
         id: staging
         run: |
           set -euo pipefail
-          slug=bestony-ai-provider-for-xiaomi-mimo
+          wporg_slug=bestony-ai-provider
           version="${GITHUB_REF_NAME#v}"
           STAGE_DIR=$(mktemp -d /tmp/wporg-staging-XXXXXX)
 
@@ -113,11 +112,11 @@ jobs:
 
           echo "stage_dir=$STAGE_DIR" >> "$GITHUB_ENV"
           echo "version=$version" >> "$GITHUB_ENV"
-          echo "slug=$slug" >> "$GITHUB_ENV"
+          echo "wporg_slug=$wporg_slug" >> "$GITHUB_ENV"
 
           echo "stage_dir=$STAGE_DIR" >> "$GITHUB_OUTPUT"
           echo "version=$version" >> "$GITHUB_OUTPUT"
-          echo "slug=$slug" >> "$GITHUB_OUTPUT"
+          echo "wporg_slug=$wporg_slug" >> "$GITHUB_OUTPUT"
 
       - name: Deploy to WordPress.org SVN
         env:
@@ -125,7 +124,7 @@ jobs:
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
         run: |
           set -euo pipefail
-          slug="$slug"
+          slug="$wporg_slug"
           version="$version"
           stage_dir="$stage_dir"
 

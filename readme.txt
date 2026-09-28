@@ -3,7 +3,7 @@ Contributors:      bestony
 Tags:              ai, connector, xiaomi, mimo, vision
 Requires at least: 7.0
 Tested up to:      7.1
-Stable tag:        1.0.2
+Stable tag:        1.0.3
 Requires PHP:      7.4
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -29,7 +29,7 @@ Adds [Xiaomi MiMo](https://platform.xiaomimimo.com/) (小米 MiMo) as a provider
 
 == Installation ==
 
-1. Upload the plugin files to `/wp-content/plugins/bestony-ai-provider-for-xiaomi-mimo/`.
+1. Upload the plugin files to `/wp-content/plugins/bestony-ai-provider/`.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 3. Go to Settings → Connectors, open the Xiaomi MiMo card and paste your API key — or define it
    outside the database (see Configuration).
@@ -67,7 +67,7 @@ schema is downgraded to `json_object`.
 There is also a **Setup Token Plan** link in the plugin's row on the Plugins screen that jumps
 straight to this page.
 
-The admin screens are translatable; a translation template (`languages/bestony-ai-provider-for-xiaomi-mimo.pot`) ships with the plugin.
+The admin screens are translatable; a translation template (`languages/bestony-ai-provider.pot`) ships with the plugin.
 
 == Configuration ==
 
@@ -211,6 +211,9 @@ This service is provided by Xiaomi:
 
 == Changelog ==
 
+= 1.0.3 =
+* WordPress.org plugin directory slug changed to `bestony-ai-provider`. Settings, API keys and environment variables are unchanged.
+
 = 1.0.2 =
 * Automated release pipeline with GitHub Actions: tag push triggers both GitHub Release and WordPress.org plugin directory publishing.
 
@@ -220,8 +223,6 @@ This service is provided by Xiaomi:
 = 1.0.1 =
 * The release zip no longer includes the `.wordpress-org` directory, which is only used for the
   WordPress.org plugin directory listing.
-* Renamed to Bestony AI Provider for Xiaomi MiMo: the plugin slug, main file and text domain are now
-  `bestony-ai-provider-for-xiaomi-mimo`. Settings, the API key and environment variables are unchanged.
 
 = 1.0.0 =
 * Initial release: text generation, chat history, tool calling, structured output (JSON mode) and
@@ -231,11 +232,11 @@ This service is provided by Xiaomi:
 
 == Upgrade Notice ==
 
-= 1.0.2 =
-Added automated GitHub Actions pipeline for WordPress.org plugin directory publishing.
+= 1.0.3 =
+WordPress.org plugin directory slug changed to `bestony-ai-provider`. Existing settings and keys keep working.
 
-= 1.0.1 =
-Renames the plugin to Bestony AI Provider for Xiaomi MiMo (slug `bestony-ai-provider-for-xiaomi-mimo`) and stops shipping the `.wordpress-org` directory in the release zip. Existing settings and keys keep working.
+= 1.0.2 =
+Stops shipping the `.wordpress-org` directory in the release zip. Existing settings and keys keep working.
 
 = 1.0.0 =
 Initial release.

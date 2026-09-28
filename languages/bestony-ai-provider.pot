@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Bestony AI Provider for Xiaomi MiMo 1.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/bestony-ai-provider-for-xiaomi-mimo\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/bestony-ai-provider\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -12,32 +12,32 @@ msgstr ""
 "POT-Creation-Date: 2026-09-22T03:57:02+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
-"X-Domain: bestony-ai-provider-for-xiaomi-mimo\n"
+"X-Domain: bestony-ai-provider\n"
 
 #. Plugin Name of the plugin
-#: bestony-ai-provider-for-xiaomi-mimo.php
+#: bestony-ai-provider.php
 #: src/Admin/XiaomimimoSettings.php:156
 #: src/Admin/XiaomimimoSettings.php:157
 msgid "Bestony AI Provider for Xiaomi MiMo"
 msgstr ""
 
 #. Plugin URI of the plugin
-#: bestony-ai-provider-for-xiaomi-mimo.php
+#: bestony-ai-provider.php
 msgid "https://github.com/bestony/AI-Provider-for-Xiaomi-MiMo"
 msgstr ""
 
 #. Description of the plugin
-#: bestony-ai-provider-for-xiaomi-mimo.php
+#: bestony-ai-provider.php
 msgid "Xiaomi MiMo (小米 MiMo) provider for the WordPress AI Client."
 msgstr ""
 
 #. Author of the plugin
-#: bestony-ai-provider-for-xiaomi-mimo.php
+#: bestony-ai-provider.php
 msgid "Bestony"
 msgstr ""
 
 #. Author URI of the plugin
-#: bestony-ai-provider-for-xiaomi-mimo.php
+#: bestony-ai-provider.php
 msgid "https://github.com/bestony"
 msgstr ""
 
