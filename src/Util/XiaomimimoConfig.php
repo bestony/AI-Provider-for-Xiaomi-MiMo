@@ -26,7 +26,7 @@ final class XiaomimimoConfig
      *
      * @var string
      */
-    public const VERSION = '1.0.3';
+    public const VERSION = '1.0.4';
 
     /**
      * The option the Settings → Bestony AI Provider for Xiaomi MiMo page stores the chosen base URL in.
