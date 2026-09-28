@@ -213,6 +213,7 @@ This service is provided by Xiaomi:
 
 = 1.0.3 =
 * WordPress.org plugin directory slug changed to `bestony-ai-provider`. Settings, API keys and environment variables are unchanged.
+* Fixed GitHub Actions svn depth typo (`infinite` → `infinity`) in SVN deploy step.
 
 = 1.0.2 =
 * Automated release pipeline with GitHub Actions: tag push triggers both GitHub Release and WordPress.org plugin directory publishing.
